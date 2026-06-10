@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Завдання 1. Дані про тварин</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="page">
+        <div class="top-line">
+            <h1>Дані про тварин</h1>
+            <a class="back-link" href="index.html">Назад</a>
+        </div>
+
+        <section class="panel">
+            <ul class="animal-list" id="animalList"></ul>
+            <p class="status" id="status"></p>
+        </section>
+    </main>
+
+    <script>
+        const animalList = document.getElementById("animalList");
+        const statusText = document.getElementById("status");
+
+        fetch("animals.json")
+            .then(function(response) {
+                return response.text();
+            })
+            .then(function(text) {
+                const animals = JSON.parse(text);
+
+                for (let i = 0; i < animals.length; i++) {
+                    const animal = animals[i];
+                    const item = document.createElement("li");
+                    const image = document.createElement("img");
+                    const info = document.createElement("div");
+                    const name = document.createElement("p");
+                    const type = document.createElement("p");
+
+                    item.className = "animal-card";
+                    image.src = animal.photo;
+                    image.alt = animal.name;
+                    info.className = "animal-info";
+                    name.className = "animal-name";
+                    type.className = "animal-type";
+
+                    name.textContent = animal.name;
+                    type.textContent = animal.type;
+
+                    info.appendChild(name);
+                    info.appendChild(type);
+                    item.appendChild(image);
+                    item.appendChild(info);
+                    animalList.appendChild(item);
+                }
+            })
+            .catch(function() {
+                statusText.textContent = "Не вдалося завантажити JSON-файл.";
+            });
+    </script>
+</body>
+</html>

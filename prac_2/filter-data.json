@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Олена Коваль",
+    "email": "olena@example.com",
+    "group": "ЦА"
+  },
+  {
+    "name": "Ігор Мельник",
+    "email": "ihor@example.com",
+    "group": "Постійні клієнти"
+  },
+  {
+    "name": "Марія Шевчук",
+    "email": "maria@example.com",
+    "group": "Інші"
+  },
+  {
+    "name": "Андрій Бондар",
+    "email": "andrii@example.com",
+    "group": "ЦА"
+  }
+]

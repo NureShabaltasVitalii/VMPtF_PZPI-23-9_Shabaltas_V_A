@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Завдання 2. Фільтр JSON</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="page">
+        <div class="top-line">
+            <h1>Фільтр JSON</h1>
+            <a class="back-link" href="index.html">Назад</a>
+        </div>
+
+        <section class="panel">
+            <div class="form-grid">
+                <label>
+                    JSON-файл
+                    <input type="file" id="jsonFile" accept=".json,application/json">
+                </label>
+
+                <label>
+                    Значення фільтра
+                    <input type="text" id="filterValue" placeholder="Наприклад: ЦА">
+                </label>
+            </div>
+
+            <button id="filterButton">Фільтрувати</button>
+            <p class="status" id="status"></p>
+            <pre class="output" id="output">[]</pre>
+        </section>
+    </main>
+
+    <script>
+        const jsonFile = document.getElementById("jsonFile");
+        const filterValue = document.getElementById("filterValue");
+        const filterButton = document.getElementById("filterButton");
+        const output = document.getElementById("output");
+        const statusText = document.getElementById("status");
+
+        function itemMatchesFilter(item, value) {
+            const keys = Object.keys(item);
+
+            for (let i = 0; i < keys.length; i++) {
+                const key = keys[i];
+                const itemValue = String(item[key]).toLowerCase();
+
+                if (itemValue === value) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        filterButton.addEventListener("click", function() {
+            const file = jsonFile.files[0];
+            const value = filterValue.value.trim().toLowerCase();
+
+            statusText.textContent = "";
+
+            if (!file) {
+                statusText.textContent = "Оберіть JSON-файл.";
+                return;
+            }
+
+            if (value === "") {
+                statusText.textContent = "Введіть значення фільтра.";
+                return;
+            }
+
+            const reader = new FileReader();
+
+            reader.onload = function(event) {
+                try {
+                    const data = JSON.parse(event.target.result);
+                    const filteredData = [];
+
+                    if (!Array.isArray(data)) {
+                        statusText.textContent = "JSON повинен містити масив об'єктів.";
+                        output.textContent = "[]";
+                        return;
+                    }
+
+                    for (let i = 0; i < data.length; i++) {
+                        if (itemMatchesFilter(data[i], value)) {
+                            filteredData.push(data[i]);
+                        }
+                    }
+
+                    output.textContent = JSON.stringify(filteredData, null, 2);
+                    statusText.textContent = "Знайдено елементів: " + filteredData.length;
+                } catch (error) {
+                    statusText.textContent = "Не вдалося прочитати JSON-файл.";
+                    output.textContent = "[]";
+                }
+            };
+
+            reader.readAsText(file);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-label="Кролик">
+  <rect width="640" height="480" fill="#eef3fb"/>
+  <rect y="335" width="640" height="145" fill="#b6d6a4"/>
+  <ellipse cx="255" cy="160" rx="45" ry="115" fill="#d8dce2"/>
+  <ellipse cx="385" cy="160" rx="45" ry="115" fill="#d8dce2"/>
+  <ellipse cx="255" cy="165" rx="22" ry="78" fill="#efb5c6"/>
+  <ellipse cx="385" cy="165" rx="22" ry="78" fill="#efb5c6"/>
+  <ellipse cx="320" cy="285" rx="135" ry="115" fill="#d8dce2"/>
+  <circle cx="275" cy="265" r="15" fill="#172026"/>
+  <circle cx="365" cy="265" r="15" fill="#172026"/>
+  <ellipse cx="320" cy="300" rx="22" ry="16" fill="#ef8fa7"/>
+  <path d="M270 325 C300 350 340 350 370 325" fill="none" stroke="#172026" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="430" cy="340" r="38" fill="#f1f3f5"/>
+</svg>

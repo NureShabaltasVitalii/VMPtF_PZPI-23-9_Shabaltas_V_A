@@ -1,0 +1,253 @@
+:root {
+    --bg: #f4f7f8;
+    --text: #172026;
+    --muted: #62717a;
+    --line: #d8e1e5;
+    --panel: #ffffff;
+    --accent: #167a72;
+    --accent-dark: #0f5d57;
+    --blue: #2f65c8;
+    --amber: #a66100;
+    --soft-green: #e4f5ef;
+    --soft-blue: #e7eefc;
+    --soft-amber: #fff2d8;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+}
+
+a {
+    color: inherit;
+}
+
+.page {
+    width: min(1100px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 32px 0;
+}
+
+.top-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.back-link {
+    color: var(--accent-dark);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.panel {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 10px 28px rgba(23, 32, 38, 0.08);
+}
+
+h1 {
+    margin: 0 0 18px;
+    font-size: 28px;
+}
+
+h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.task-list {
+    display: grid;
+    gap: 12px;
+}
+
+.task-list a {
+    display: block;
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fbfcfd;
+    color: var(--text);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.task-list a:hover {
+    border-color: var(--accent);
+}
+
+.animal-list,
+.user-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 16px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.animal-card,
+.user-card {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fbfcfd;
+    overflow: hidden;
+}
+
+.animal-card img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    background: #dfe8eb;
+}
+
+.animal-info,
+.user-card {
+    padding: 14px;
+}
+
+.animal-name,
+.user-name {
+    margin: 0 0 6px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.animal-type,
+.user-email {
+    margin: 0;
+    color: var(--muted);
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+label {
+    display: grid;
+    gap: 7px;
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+input,
+select {
+    width: 100%;
+    min-height: 42px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 9px 11px;
+    color: var(--text);
+    background: #ffffff;
+    font: inherit;
+}
+
+button {
+    min-height: 42px;
+    border: 0;
+    border-radius: 8px;
+    padding: 10px 16px;
+    color: #ffffff;
+    background: var(--accent);
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+button:hover {
+    background: var(--accent-dark);
+}
+
+.output {
+    min-height: 200px;
+    margin: 0;
+    padding: 16px;
+    overflow: auto;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #101820;
+    color: #edf7f7;
+    white-space: pre-wrap;
+}
+
+.status {
+    margin: 12px 0 0;
+    color: var(--muted);
+}
+
+.toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.filter-button {
+    border: 1px solid var(--line);
+    background: #ffffff;
+    color: var(--text);
+}
+
+.filter-button.active {
+    border-color: var(--accent);
+    background: var(--soft-green);
+    color: var(--accent-dark);
+}
+
+.group-badge {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    margin: 12px 0;
+    padding: 4px 9px;
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.group-target {
+    background: var(--soft-blue);
+    color: var(--blue);
+}
+
+.group-regular {
+    background: var(--soft-green);
+    color: var(--accent-dark);
+}
+
+.group-other {
+    background: var(--soft-amber);
+    color: var(--amber);
+}
+
+@media (max-width: 640px) {
+    .page {
+        width: min(100% - 20px, 1100px);
+        padding: 20px 0;
+    }
+
+    .panel {
+        padding: 18px;
+    }
+
+    .top-line {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}

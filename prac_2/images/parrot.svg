@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-label="Папуга">
+  <rect width="640" height="480" fill="#dff4f8"/>
+  <rect y="355" width="640" height="125" fill="#9ccc8d"/>
+  <path d="M320 115 C430 140 455 245 395 330 C360 380 280 380 245 330 C185 245 210 140 320 115 Z" fill="#2d9b70"/>
+  <path d="M320 115 C385 140 405 220 355 290 C330 325 295 340 255 330 C205 250 230 150 320 115 Z" fill="#e04444"/>
+  <path d="M375 190 L500 220 L385 250 Z" fill="#f2b84b"/>
+  <circle cx="350" cy="185" r="18" fill="#ffffff"/>
+  <circle cx="354" cy="185" r="9" fill="#172026"/>
+  <path d="M285 360 L265 440 M340 360 L365 440" stroke="#6d4c2f" stroke-width="14" stroke-linecap="round"/>
+  <path d="M230 440 H400" stroke="#6d4c2f" stroke-width="16" stroke-linecap="round"/>
+</svg>

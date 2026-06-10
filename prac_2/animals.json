@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Кіт",
+    "type": "Свійська тварина",
+    "photo": "images/cat.svg"
+  },
+  {
+    "name": "Собака",
+    "type": "Свійська тварина",
+    "photo": "images/dog.svg"
+  },
+  {
+    "name": "Папуга",
+    "type": "Птах",
+    "photo": "images/parrot.svg"
+  },
+  {
+    "name": "Кролик",
+    "type": "Свійська тварина",
+    "photo": "images/rabbit.svg"
+  }
+]

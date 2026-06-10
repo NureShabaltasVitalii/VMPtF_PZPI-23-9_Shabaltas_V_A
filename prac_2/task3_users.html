@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Завдання 3. Користувачі</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="page">
+        <div class="top-line">
+            <h1>Список користувачів</h1>
+            <a class="back-link" href="index.html">Назад</a>
+        </div>
+
+        <section class="panel">
+            <div class="toolbar">
+                <button class="filter-button active" data-group="Усі">Усі</button>
+                <button class="filter-button" data-group="ЦА">ЦА</button>
+                <button class="filter-button" data-group="Постійні клієнти">Постійні клієнти</button>
+                <button class="filter-button" data-group="Інші">Інші</button>
+            </div>
+
+            <ul class="user-list" id="userList"></ul>
+            <p class="status" id="status"></p>
+        </section>
+    </main>
+
+    <script>
+        const userList = document.getElementById("userList");
+        const statusText = document.getElementById("status");
+        const filterButtons = document.querySelectorAll(".filter-button");
+        const groups = ["ЦА", "Постійні клієнти", "Інші"];
+
+        let users = [];
+        let activeGroup = "Усі";
+
+        function getSavedGroups() {
+            const savedText = localStorage.getItem("practice2UserGroups");
+
+            if (savedText === null) {
+                return {};
+            }
+
+            return JSON.parse(savedText);
+        }
+
+        function saveGroups() {
+            const savedGroups = {};
+
+            for (let i = 0; i < users.length; i++) {
+                savedGroups[users[i].email] = users[i].group;
+            }
+
+            localStorage.setItem("practice2UserGroups", JSON.stringify(savedGroups));
+        }
+
+        function getGroupClass(group) {
+            if (group === "ЦА") {
+                return "group-target";
+            }
+
+            if (group === "Постійні клієнти") {
+                return "group-regular";
+            }
+
+            return "group-other";
+        }
+
+        function createGroupSelect(user) {
+            const select = document.createElement("select");
+
+            for (let i = 0; i < groups.length; i++) {
+                const option = document.createElement("option");
+                option.value = groups[i];
+                option.textContent = groups[i];
+                select.appendChild(option);
+            }
+
+            select.value = user.group;
+            select.addEventListener("change", function() {
+                user.group = select.value;
+                saveGroups();
+                renderUsers();
+            });
+
+            return select;
+        }
+
+        function renderUsers() {
+            userList.innerHTML = "";
+
+            for (let i = 0; i < users.length; i++) {
+                const user = users[i];
+
+                if (activeGroup !== "Усі" && user.group !== activeGroup) {
+                    continue;
+                }
+
+                const item = document.createElement("li");
+                const name = document.createElement("p");
+                const email = document.createElement("p");
+                const badge = document.createElement("span");
+                const label = document.createElement("label");
+                const select = createGroupSelect(user);
+
+                item.className = "user-card";
+                name.className = "user-name";
+                email.className = "user-email";
+                badge.className = "group-badge " + getGroupClass(user.group);
+
+                name.textContent = user.name;
+                email.textContent = user.email;
+                badge.textContent = user.group;
+                label.textContent = "Група";
+
+                label.appendChild(select);
+                item.appendChild(name);
+                item.appendChild(email);
+                item.appendChild(badge);
+                item.appendChild(label);
+                userList.appendChild(item);
+            }
+
+            if (userList.children.length === 0) {
+                statusText.textContent = "Користувачів у цій групі немає.";
+            } else {
+                statusText.textContent = "Користувачів показано: " + userList.children.length;
+            }
+        }
+
+        function activateFilter(group) {
+            activeGroup = group;
+
+            for (let i = 0; i < filterButtons.length; i++) {
+                if (filterButtons[i].dataset.group === group) {
+                    filterButtons[i].classList.add("active");
+                } else {
+                    filterButtons[i].classList.remove("active");
+                }
+            }
+
+            renderUsers();
+        }
+
+        for (let i = 0; i < filterButtons.length; i++) {
+            filterButtons[i].addEventListener("click", function() {
+                activateFilter(filterButtons[i].dataset.group);
+            });
+        }
+
+        fetch("users.json")
+            .then(function(response) {
+                return response.text();
+            })
+            .then(function(text) {
+                users = JSON.parse(text);
+                const savedGroups = getSavedGroups();
+
+                for (let i = 0; i < users.length; i++) {
+                    if (savedGroups[users[i].email]) {
+                        users[i].group = savedGroups[users[i].email];
+                    }
+                }
+
+                renderUsers();
+            })
+            .catch(function() {
+                statusText.textContent = "Не вдалося завантажити список користувачів.";
+            });
+    </script>
+</body>
+</html>
