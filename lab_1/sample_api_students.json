@@ -1,0 +1,24 @@
+[
+  {
+    "pib": "Бондаренко Олег Васильович",
+    "group": "КН-31",
+    "photo": "photos/bondarenko.jpg",
+    "contact": "bondarenko@example.com, +380504040404",
+    "grades": {
+      "Математика": 10,
+      "Фізика": 9,
+      "Програмування": 12
+    }
+  },
+  {
+    "pib": "Гриценко Наталія Романівна",
+    "group": "КН-32",
+    "photo": "photos/hrytsenko.jpg",
+    "contact": "hrytsenko@example.com, +380675050505",
+    "grades": {
+      "Математика": 11,
+      "Фізика": 10,
+      "Програмування": 11
+    }
+  }
+]
